@@ -5,13 +5,13 @@ class TodoInput extends React.Component {
     //The way props is passed in class based component is quite different. If
     //I were to use a Functional Component, the way tp passed the methods(handleSubmit, handlechange and item)
     //will be passed by (props.handleChange, props.handleSubmit and props.item)
-    const { item, handleChange, handleSubmit } = this.props;
+    const { item, handleChange, handleSubmit, editItem } = this.props;
     return (
       <div className="card card-body my-3">
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <div className="input-group-prepend">
-              <div className="input-group-text bg-primary text-white">
+              <div className="input-group-text bg-secondary text-white">
                 <i className="fas fa-book"></i>
               </div>
             </div>
@@ -23,8 +23,15 @@ class TodoInput extends React.Component {
               onChange={handleChange}
             />
           </div>
-          <button type="submit" className="btn btn-block btn-primary mt-3">
-            Add Item
+          <button
+            type="submit"
+            className={
+              editItem
+                ? "btn btn-block btn-success mt-3"
+                : "btn btn-block btn-primary mt-3"
+            }
+          >
+            {editItem ? "Edit Item" : "Add Item"}
           </button>
         </form>
       </div>
